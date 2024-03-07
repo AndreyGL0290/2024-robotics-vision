@@ -6,6 +6,7 @@ if __name__ == '__main__':
     camera = Camera(stream)
     while True:
         cv2.imshow('camera stream', camera.getNote())
+        # camera.getNote()
         if cv2.waitKey(1) & 0xFF == ord('q'): 
             break
     stream.release()
