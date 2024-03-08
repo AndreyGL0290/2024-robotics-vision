@@ -12,5 +12,6 @@ class NetworkCommunication:
         self.ntinst.startDSClient()
         self.rotations_table = self.ntinst.getTable("PIDRotations")
 
-    def send_pose(self, PIDValue: float):
-        self.rotations_table.putNumberArray("PIDRotation", PIDValue)
+    def send_rotation(self, PIDValue: float):
+        self.rotations_table.putNumber("PIDRotation", PIDValue)
+        print(PIDValue)
