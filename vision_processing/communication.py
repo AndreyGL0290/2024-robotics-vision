@@ -10,7 +10,7 @@ class NetworkCommunication:
         self.ntinst = networktables.NetworkTablesInstance.getDefault()
         self.ntinst.startClientTeam(8775)
         self.ntinst.startDSClient()
-        self.rotations_table = self.ntinst.getTable("Rotations")
+        self.rotations_table = self.ntinst.getTable("PIDRotations")
 
-    def send_pose(self, angle: float):
-        self.rotations_table.putNumberArray("rot", angle)
+    def send_pose(self, PIDValue: float):
+        self.rotations_table.putNumberArray("PIDRotation", PIDValue)
