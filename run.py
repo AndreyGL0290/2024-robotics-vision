@@ -21,7 +21,7 @@ class PipelineRunner:
             timestamp = time.time()
 
             # Processing frame
-            PIDValue = self.camera.getNote()
+            _, PIDValue = self.camera.getNote()
 
             if PIDValue:
                 self.communications.send_rotation(PIDValue)
