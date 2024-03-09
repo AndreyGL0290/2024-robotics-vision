@@ -35,9 +35,9 @@ class Camera():
         return self.camera.read()[1]
 
     def getNote(self) -> tuple[MatLike, float]:
-        frame = self.preprocessed
+        frame_mask = self.preprocessed
 
-        contours, _ = cv2.findContours(frame, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        contours, _ = cv2.findContours(frame_mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
         
         note = Note()
         PIDValue = None # In case there are no notes in the frame
@@ -55,6 +55,7 @@ class Camera():
                 maxArea = area
                 note = Note(contour=cnt, index=index, dA=area-circle_area)
                 
+        frame = self.getFrame()
         if note.inFrame and note.center and self.height:
             cv2.drawContours(frame, contours, note.cnt_id, (255,0,0), 2, cv2.LINE_AA)
             cv2.drawMarker(frame, note.center, (0,255,0), cv2.MARKER_CROSS, 10, 2, cv2.LINE_AA)
