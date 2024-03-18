@@ -51,7 +51,7 @@ class Camera():
             # Change the way of circle detection
             _, circle_radius = cv2.minEnclosingCircle(cnt)
             circle_area = circle_radius ** 2 * math.pi
-            if area-circle_area < 100 and area>maxArea:
+            if area-circle_area < NoteConstants.minAreaDifference and area>maxArea:
                 maxArea = area
                 note = Note(contour=cnt, index=index, dA=area-circle_area)
                 
